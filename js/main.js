@@ -1,7 +1,7 @@
 var answers = {
 	quizquestion_1 : {
 		questionType : "textWithImage",
-		answersOptions : [
+		answerOptions : [
 			{
 				text : "Sowjetunion",
 			  	image : "http:/www.bla.de/dkjbvjhdb",
@@ -64,6 +64,7 @@ function buildQuestionContent(questionId) {
 			$ul.append($li);
 		});
 	} else {
+		console.log("undefined question type");
 	}
 	
 	var content = $("<div>").append($ul).html();
@@ -82,12 +83,12 @@ function enableQuizQuestion($span) {
 	console.log(content);
 	
 	$span.popover(
-	{
-		"html": true,
-		"placement": "auto",
-		"trigger": "click",
-		"content": content
-	}
+		{
+			"html": true,
+			"placement": "auto",
+			"trigger": "click",
+			"content": content
+		}
 	);
 }
 
