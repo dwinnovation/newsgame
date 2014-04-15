@@ -6,7 +6,9 @@
 
 
 span{
-color: red;
+  display: inline-block;
+  max-width: 250px;
+ background-color:red;
 cursor:pointer;
 }
 
