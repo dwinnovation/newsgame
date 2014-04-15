@@ -18,14 +18,18 @@ background: url("http://www.dw.de/cssi/dwlogo-all.gif") no-repeat scroll 0 0 rgb
 	
 	#navigation>.container{
 	background-color:#FFFFFF;}
-span{
+span[id^="quizquestion_"]{
   display: inline-block;
-  width: 50px;
-  height: 20px;
+  min-width: 50px;
+  min-height: 20px;
   top:5px;
  background-color:red;
  
 cursor:pointer;
+}
+
+span[id^="quizquestion_"].answered{
+	background-color:green;
 }
 
 contentWrapper{

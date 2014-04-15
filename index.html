@@ -72,6 +72,8 @@ An dem Treffen nimmt auch NATO-Generalsekretär <span id="quizquestion_9">Anders
 <p>
 mm/uh (dpa, afp, rtr)</p>
 
+	      <button id="quizcheckbutton" class="btn btn-primary" name="check">Prüfen!</button>
+
       </div>
 
       <hr>
@@ -79,11 +81,32 @@ mm/uh (dpa, afp, rtr)</p>
       <footer>
         <p>&copy; Company 2014</p>
       </footer>
-    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+    </div> <!-- /container -->
+    
+    <div id="missingAnswersModalDialog" class="modal fade bs-example-modal-lg">
+    	<div class="modal-dialog modal-lg">
+    		<div class="modal-content">
+    			<div class="modal-body">
+      				Es wurden noch nicht alle Fragen beantwortet!
+  				</div>
+    		</div>
+  		</div>
+    </div>
 
+    <div id="summaryModalDialog" class="modal fade bs-example-modal-lg">
+    	<div class="modal-dialog modal-lg">
+    		<div class="modal-content">
+    			<div class="modal-body">
+      				<span id="countCorrect">n</span> korrekte Antworten
+      				<br/>
+      				<span id="countIncorrect">m</span> falsche Antworten
+  				</div>
+    		</div>
+  		</div>
+    </div>
+    
+        <script src="js/vendor/jquery-1.11.0.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
-
         <script src="js/main.js"></script>
     </body>
 </html>
