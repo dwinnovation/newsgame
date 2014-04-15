@@ -1,3 +1,4 @@
+// hardcoded answer definitions
 var answers = {
 	quizquestion_1 : {
 		questionType : "textWithImage",
@@ -34,6 +35,22 @@ var answers = {
 	}
 };
 
+/*
+ * an answer option has been selected - put value in the article text and close popover
+ */
+function optionSelected(questionId, value) {
+	console.log("value " + value + " selected for " + questionId);
+	var $span = $('#'+questionId);
+	
+	$span.text(value);
+	$span.addClass("answered");
+	
+	popovers[questionId].popover("hide");
+}
+
+/*
+ * build the HTML fragment for a question
+ */ 
 function buildQuestionContent(questionId) {
 	var answer = answers[questionId];
 
@@ -47,17 +64,16 @@ function buildQuestionContent(questionId) {
 		$.each(answer.answerOptions, function(i, opt) {
 		    
 		    var id = questionId + "_" + i;
-		    
-		    var $input = $('<input type="radio">').attr("value", opt.text).attr("id", id).attr("name", questionId);
+		    var $input = $('<input class="answerOption" type="radio">').attr("value", opt.text).attr("id", id).attr("name", questionId);
+
 		    var $label = $('<label>').attr("for", id).text(opt.text);
+
 			var $li = $("<li>").append($input).append($label);
 			
 			if (opt.correct) {
 				$li.addClass("correct");
 			}
-			
-			console.log($li.html());
-			
+
 			$ul.append($li);
 		});
 	} else if (answer.questionType == "textWithImage") {
@@ -78,7 +94,7 @@ function buildQuestionContent(questionId) {
 	return content;
 }
 
-var popovers = [];
+var popovers = {};
 
 function enableQuizQuestion($span) {
 	
@@ -88,15 +104,13 @@ function enableQuizQuestion($span) {
 	// remove text:
 	$span.text("");
 	
-	popovers.push(
-		$span.popover(
-			{
-				"html": true,
-				"placement": "auto",
-				"trigger": "click",
-				"content": content
-			}
-		)
+	popovers[spanId] = $span.popover(
+		{
+			"html": true,
+			"placement": "auto",
+			"trigger": "click",
+			"content": content
+		}
 	);
 }
 
@@ -109,14 +123,16 @@ $(document).ready(
 				enableQuizQuestion($span);
 			}
 		);
+
+		// click handler for all answer options on the articleBody:
+		// (using jQuery delegated event handler mechanism because options are added dynamically)
+		$("#articleBody").on("click", ".answerOption", function(){				
+			optionSelected(
+				$(this).attr("name"),
+				$(this).val()
+			);
+		});
 		
-		// global onclick handler:
-		//$("body").click(function(){
-		//	// close all popovers:
-		//	$.each(popovers, function(i,popover){
-		//		popover.popover("hide");
-		//	})
-		//});
 	}
 	
 );
