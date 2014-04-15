@@ -45,19 +45,25 @@ function buildQuestionContent(questionId) {
 
 	if (answer.questionType == "text") {
 		$.each(answer.answerOptions, function(i, opt) {
-			var $li = $("<li>").text(opt.text);
-			if (opt.correct)
-			{
+		    
+		    var id = questionId + "_" + i;
+		    
+		    var $input = $('<input type="radio">').attr("value", opt.text).attr("id", id).attr("name", questionId);
+		    var $label = $('<label>').attr("for", id).text(opt.text);
+			var $li = $("<li>").append($input).append($label);
+			
+			if (opt.correct) {
 				$li.addClass("correct");
 			}
+			
+			console.log($li.html());
 			
 			$ul.append($li);
 		});
 	} else if (answer.questionType == "textWithImage") {
 		$.each(answer.answerOptions, function(i, opt) {
 			var $li = $("<li>").text(opt.text);
-			if (opt.correct)
-			{
+			if (opt.correct) {
 				$li.addClass("correct");
 			}
 			
@@ -72,6 +78,8 @@ function buildQuestionContent(questionId) {
 	return content;
 }
 
+var popovers = [];
+
 function enableQuizQuestion($span) {
 	
 	var spanId = $span.attr('id');
@@ -80,15 +88,15 @@ function enableQuizQuestion($span) {
 	// remove text:
 	$span.text("");
 	
-	console.log(content);
-	
-	$span.popover(
-		{
-			"html": true,
-			"placement": "auto",
-			"trigger": "click",
-			"content": content
-		}
+	popovers.push(
+		$span.popover(
+			{
+				"html": true,
+				"placement": "auto",
+				"trigger": "click",
+				"content": content
+			}
+		)
 	);
 }
 
@@ -101,5 +109,14 @@ $(document).ready(
 				enableQuizQuestion($span);
 			}
 		);
+		
+		// global onclick handler:
+		//$("body").click(function(){
+		//	// close all popovers:
+		//	$.each(popovers, function(i,popover){
+		//		popover.popover("hide");
+		//	})
+		//});
 	}
+	
 );
