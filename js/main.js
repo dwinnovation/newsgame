@@ -33,7 +33,7 @@ var answers = {
 			}
 		]
 	},
-	,
+	
 	quizquestion_3 : {
 		questionType : "textWithImage",
 		answerOptions : [
