@@ -32,6 +32,22 @@ var answers = {
 			 	image : "http:/www.bla.de/dkjbvjhdb"
 			}
 		]
+	},
+	,
+	quizquestion_3 : {
+		questionType : "textWithImage",
+		answerOptions : [
+			{
+				text : "Frank-Walter Steinmeier",
+			  	correct: true
+			},
+			{
+				text : "Hillary Clinton"
+			},
+			{
+				text : "David Cameron"
+			}
+		]
 	}
 };
 
