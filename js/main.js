@@ -80,7 +80,7 @@ function buildQuestionContent(questionId) {
 		$.each(answer.answerOptions, function(i, opt) {
 		    var id = questionId + "_" + i;
 
-		    var $input = $('<input class="answerOption" type="radio">').attr("value", opt.text).attr("id", id).attr("name", questionId);
+		    var $input = $('<input class="answerOption" type="radio"> ').attr("value", opt.text).attr("id", id).attr("name", questionId);
 		    var $label = $('<label>').attr("for", id).text(opt.text);
 
 			var $li = $("<li>").append($input).append($label);
